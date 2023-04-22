@@ -1,1 +1,47 @@
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import datasets
+from sklearn.datasets import load_wine
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+%matplotlib inline
 
+wine=load_wine()
+X=wine.data
+y=wine.target
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.3)
+rfc=RandomForestClassifier(n_estimators=10,n_jobs=-1,random_state=50,min_samples_leaf=20)   
+rfc.fit(X_train,y_train)
+print(rfc.score(X_test,y_test))
+
+#feature importance特徵重要性
+imp=rfc.feature_importances_   #查所有特徵重要性
+print(imp)
+names=wine.feature_names       #查特徵名稱
+print(names)
+
+
+imp,names=zip(*sorted(zip(imp,names)))
+plt.barh(range(len(names)),imp,align='center') #繪製長條圖
+plt.yticks(range(len(names)),names)
+plt.xlabel('importances features')
+plt.ylabel('features')
+plt.title('wine importances feature')
+plt.show
+
+#n_estimators設定要幾顆決策樹來建構
+#n_jobs設定要幾個cpu進行工作，-1表示所有
+#random_state固定每次抓取的資料
+#min_samples_leaf修剪葉子(表示最少一支樹枝上要有幾片葉子)
+
+
+#zip舉例
+#a = [1,2,3]
+#b = [4,5,6]
+#c = [4,5,6,7,8]
+#zipped = zip(a,b)
+#zipped
+#[(1, 4), (2, 5), (3, 6)]
+#zip(a,c)
+#[(1, 4), (2, 5), (3, 6)]
+#zip(*zipped)
+#[(1, 2, 3), (4, 5, 6)]
