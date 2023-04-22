@@ -48,3 +48,8 @@ plt.ylabel('features')
 plt.title('wine importances feature')
 
 plt.show
+
+
+
+
+![image](https://github.com/H-D00/Sklearn/blob/fe5fcaeabfaf5b3ff5ae1f7dac541580103730a7/RandomForest/%5Bouput%5D%20RandomForest.jpg)
