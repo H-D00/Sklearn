@@ -11,18 +11,14 @@ X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.3,random_state=0)
 
 clf=LogisticRegression()
 clf.fit(X_train,y_train)
-print(clf.predict(X_test)) #¬Ý¼Ò«¬¹w´útestªºµ²ªG
-print(clf.predict_proba(X_test)) #¬Ý¼Ò«¬¹w´útestµ²ªG¾÷²v(¿é¥X±q0¶}©lºâ¡A0,1½Ö¾÷²v¤j¹w´ú¥Xµ²ªG´N¬O¥¦)
+print(clf.predict(X_test)) 
+print(clf.predict_proba(X_test)) 
 
-#for f,w in zip(breast_cancer.feature_names,clf.coef_[0]):
-#    print("{0:<23}:{1:6.2f}".format(f,w))
+for f,w in zip(breast_cancer.feature_names,clf.coef_[0]):
+    print("{0:<23}:{1:6.2f}".format(f,w))
 
-print("¹w´ú­È:",clf.predict(X_test))
-print("·Ç½T²v:",clf.score(X_test,y_test))
+print("é æ¸¬å€¼:",clf.predict(X_test))
+print("æº–ç¢ºçŽ‡:",clf.score(X_test,y_test))
 
 plt.scatter(X[:,2],X[:,3],c=y)
 plt.show()
-
-#¦bPython¤¤¡A`plt.scatter(x[:,3], x[:,3], c=y)`ªº·N«ä¬OÃ¸»s´²ÂI¹Ï¡A
-#¨ä¤¤x[:,3]ªí¥Üx¤¤ªº²Ä4¦C¼Æ¾Ú¡Ac=yªí¥Ü¨Ï¥Îy¼Æ¾Ú§@¬°ÂIªºÃC¦â¡C
-#¨ãÅé¨Ó»¡¡A`x[:,3]`ªí¥Ü¿ï¨úx¤¤©Ò¦³¦æªº²Ä4­Ó¤¸¯À¡A¬Û·í©ó±qx¤¤´£¨ú¤@­Ó¦C¦V¶q¡C
