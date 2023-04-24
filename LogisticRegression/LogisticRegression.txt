@@ -1,0 +1,28 @@
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+
+breast_cancer=load_breast_cancer()
+X=breast_cancer.data
+y=breast_cancer.target
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.3,random_state=0)
+
+clf=LogisticRegression()
+clf.fit(X_train,y_train)
+print(clf.predict(X_test)) #看模型預測test的結果
+print(clf.predict_proba(X_test)) #看模型預測test結果機率(輸出從0開始算，0,1誰機率大預測出結果就是它)
+
+#for f,w in zip(breast_cancer.feature_names,clf.coef_[0]):
+#    print("{0:<23}:{1:6.2f}".format(f,w))
+
+print("預測值:",clf.predict(X_test))
+print("準確率:",clf.score(X_test,y_test))
+
+plt.scatter(X[:,2],X[:,3],c=y)
+plt.show()
+
+#在Python中，`plt.scatter(x[:,3], x[:,3], c=y)`的意思是繪製散點圖，
+#其中x[:,3]表示x中的第4列數據，c=y表示使用y數據作為點的顏色。
+#具體來說，`x[:,3]`表示選取x中所有行的第4個元素，相當於從x中提取一個列向量。
