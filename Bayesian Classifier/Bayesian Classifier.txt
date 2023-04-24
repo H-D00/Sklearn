@@ -3,10 +3,8 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.naive_bayes import BernoulliNB
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-%matplotlib inline
 
 iris=datasets.load_iris()
 X=iris.data
@@ -14,60 +12,35 @@ y=iris.target
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.3)
 
 
-°ª´µ¨©¦¡¤ÀÃş¾¹(Gaussian Naive Bayes)
-¥D­n¥Î©ó¯S¼x¬°³sÄòÅÜ¼Æ¨Ã²Å¦X²Å¦X±`ºA¤À§G®É
+é«˜æ–¯è²å¼åˆ†é¡å™¨(Gaussian Naive Bayes)
 
 GNB=GaussianNB()
 GNB.fit(X_train,y_train)
 GNB.predict(X_test)
-
 print('Training Score:',GNB.score(X_train,y_train))
 print('Test Score:',GNB.score(X_test,y_test))
 
 
-¦h¶µ¦¡¨©¦¡¤ÀÃş¾¹(Multinomial Naive Bayes)
-¥D­n¥Î¦b¯S¼x¬°Â÷´²ÅÜ¼Æªº±¡ªp(¦¸¼Æ¡BÃş§O)
+å¤šé …å¼è²å¼åˆ†é¡å™¨(Multinomial Naive Bayes)
 
-MNB=MultinomialNB()   #¦b¤£³]©wªº±¡ªp¤U¡A£\¹w³]¬°1.0(£\¬°¥­·Æ³B²z)
+MNB=MultinomialNB()  
 MNB.fit(X_train,y_train)
 MNB.predict(X_test)
-
 print('Training Score:',MNB.score(X_train,y_train))
 print('Test Score:',MNB.score(X_test,y_test))
 
 
-§B§V¤O¨©¤ó¤ÀÃş¾¹(Bernoulli Naive Bayes)
-¤]¾A¥Î©óÂ÷´²¯S¼xªºª¬ªp¡A¦ı¤£¦Pªº¬O§B§V¤O¼Ò«¬ªº¯S¼x¨ú­È¥u¯à¬O1©M0ªº¤G¤¸¯S¼x
-
+ä¼¯åŠªåŠ›è²æ°åˆ†é¡å™¨(Bernoulli Naive Bayes)
 
 BNB=BernoulliNB()   
 BNB.fit(X_train,y_train)
-print(BNB.predict(X_test)) #µ¹³sÄò«¬¸ê®Æ¡A©Ò¹w´ú¥X¨Óªºµ²ªG³£¬O¦P¤@ºØ¯S¼x
-
+print(BNB.predict(X_test))
 print('BNB Training Score:',BNB.score(X_train,y_train))
 print('BNB Test Score:',BNB.score(X_test,y_test))
 
 
-BNB_bin=BernoulliNB(binarize=1)  #­Yµ¹³sÄò«¬©Î¬OÂ÷´²«¬«D¤G¤¸ªº¸ê®Æ¡A¹w´ú¥X¨Óªº­È³£¬O¦P¼Ëªº¡A¥i¥H²K¥[binarize°Ñ¼Æ¡Aµ¹©w°ò·ÇÂI¡Aif=1ªí¥Ü¯S¼x­È¤p©ó1¤@Ãş¡A¤j©ó1ªº¤@Ãş
+BNB_bin=BernoulliNB(binarize=1)  
 BNB_bin.fit(X_train,y_train)
 print(BNB_bin.predict(X_test))
-
 print('BNB_bin Training Score:',BNB_bin.score(X_train,y_train))
 print('BNB_bin Test Score:',BNB_bin.score(X_test,y_test))
-
-
-#¦bbinarize°Ñ¼Æ¥i¥H®Ú¾Ú¼Ë¥»´y­z¶i¦æ¬ÛÃö¼Æ­È³]©w¦p¡A(binarize=[5.8,3,4.35,1.3]) «ü¦b²Ä¤@­Ó¯S¼x¤¤<5.8¬°¤@Ãş¡A>5.8¬°¤@Ãş¡F²Ä¤G¯S¼x¤¤<3¬°¤@Ãş¡A>3¬°¤@Ãş
-X=pd.DataFrame(X)
-X.describe()
-
-
-
-
-
-
-
-
-
-
-
-
