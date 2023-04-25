@@ -1,0 +1,43 @@
+from sklearn.neighbors import KNeighborsClassifier
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+
+digits=datasets.load_digits()    #內建手寫數字圖片數據集
+X=digits.data
+y=digits.target
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.3,random_state=0)
+
+KNN=KNeighborsClassifier(n_neighbors=5,p=2,weights='distance',algorithm='brute')
+KNN.fit(X_train,y_train)
+print(KNN.predict(X_test))
+print(KNN.score(X_test,y_test))
+print(KNN.score(X_train,y_train))
+
+#n_neighbor:K值(盡量不要偶數)
+#weight:uniform(不加權)/distance(根據距離，進行加權)/其他
+
+#algorithm(演算法):
+#auto(預設auto，自動判斷)/brute(樣本少使用，每個點計算)/
+#kd_tree(根據訓練資料的維度，建立樹狀結構找到最接近的點，資料量大計算慢)/ball_tree(使用樹狀結構，找到中心點，根據中心點半徑決定哪些要做計算)
+
+#p:1-曼哈頓距離/2-歐基里德距離/其他:明氏距離
+
+
+如何尋找最適合的K值
+
+a=[]
+print(len(X_train))
+for k in range(1,100):
+  knn=KNeighborsClassifier(n_neighbors=k)
+  knn.fit(X_train,y_train)
+  y_pred=knn.predict(X_test)
+  a.append(metrics.accuracy_score(y_test,y_pred))
+  print("n_neighbor:",k,"準確率:",metrics.accuracy_score(y_test, y_pred))
+
+k_range=range(1,100)
+plt.plot(k_range,a)
+plt.show()
