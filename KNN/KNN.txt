@@ -6,7 +6,7 @@ from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
-digits=datasets.load_digits()    #¤º«Ø¤â¼g¼Æ¦r¹Ï¤ù¼Æ¾Ú¶°
+digits=datasets.load_digits()   
 X=digits.data
 y=digits.target
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.3,random_state=0)
@@ -17,17 +17,7 @@ print(KNN.predict(X_test))
 print(KNN.score(X_test,y_test))
 print(KNN.score(X_train,y_train))
 
-#n_neighbor:K­È(ºÉ¶q¤£­n°¸¼Æ)
-#weight:uniform(¤£¥[Åv)/distance(®Ú¾Ú¶ZÂ÷¡A¶i¦æ¥[Åv)/¨ä¥L
-
-#algorithm(ºtºâªk):
-#auto(¹w³]auto¡A¦Û°Ê§PÂ_)/brute(¼Ë¥»¤Ö¨Ï¥Î¡A¨C­ÓÂI­pºâ)/
-#kd_tree(®Ú¾Ú°V½m¸ê®Æªººû«×¡A«Ø¥ß¾ğª¬µ²ºc§ä¨ì³Ì±µªñªºÂI¡A¸ê®Æ¶q¤j­pºâºC)/ball_tree(¨Ï¥Î¾ğª¬µ²ºc¡A§ä¨ì¤¤¤ßÂI¡A®Ú¾Ú¤¤¤ßÂI¥b®|¨M©w­ş¨Ç­n°µ­pºâ)
-
-#p:1-°Ò«¢¹y¶ZÂ÷/2-¼Ú°ò¨½¼w¶ZÂ÷/¨ä¥L:©ú¤ó¶ZÂ÷
-
-
-¦p¦ó´M§ä³Ì¾A¦XªºK­È
+#å¦‚ä½•å°‹æ‰¾æœ€é©åˆçš„Kå€¼
 
 a=[]
 print(len(X_train))
@@ -36,7 +26,7 @@ for k in range(1,100):
   knn.fit(X_train,y_train)
   y_pred=knn.predict(X_test)
   a.append(metrics.accuracy_score(y_test,y_pred))
-  print("n_neighbor:",k,"·Ç½T²v:",metrics.accuracy_score(y_test, y_pred))
+  print("n_neighbor:",k,"æº–ç¢ºç‡:",metrics.accuracy_score(y_test, y_pred))
 
 k_range=range(1,100)
 plt.plot(k_range,a)
